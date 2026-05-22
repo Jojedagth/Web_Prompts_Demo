@@ -18,4 +18,5 @@ Biblioteca local de estructuras de prompt certificadas. Sin dependencias, sin se
 
 HTML5, CSS3, Vanilla JS. Todo en `css/` y `js/`.
 
-![Web](/public/web.png)
+![Web](promptops/public/web.png)
+
