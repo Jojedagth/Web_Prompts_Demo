@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PromptOps — Certified Prompt Structures</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">Prompt<span>Ops</span></a>
+      <div class="nav-links">
+        <a href="#library" data-i18n="nav_library">Library</a>
+        <a href="#adapter" data-i18n="nav_adapter">Adapter</a>
+        <a href="#stacks" data-i18n="nav_stacks">Stacks</a>
+        <a href="#publish" data-i18n="nav_publish">Publish</a>
+      </div>
+      <div class="nav-right">
+        <button class="lang-toggle" id="langToggle" data-i18n="lang_toggle">ES</button>
+        <button class="btn-login" id="loginBtn" data-i18n="nav_login">Login</button>
+        <button class="btn-logout" id="logoutBtn" data-i18n="nav_logout" style="display:none">Logout</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero" id="hero">
+    <div class="hero-bg-grid"></div>
+    <div class="hero-vignette"></div>
+    <div class="hero-floating-emojis">
+      <span class="hero-emoji" style="top:10%;left:8%;animation-duration:6s;animation-delay:0s">🌐</span>
+      <span class="hero-emoji" style="top:15%;right:12%;animation-duration:7s;animation-delay:0.5s">🎨</span>
+      <span class="hero-emoji" style="top:60%;left:5%;animation-duration:8s;animation-delay:1s">⚡</span>
+      <span class="hero-emoji" style="top:70%;right:8%;animation-duration:6.5s;animation-delay:0.3s">🐍</span>
+      <span class="hero-emoji" style="top:40%;left:90%;animation-duration:7.5s;animation-delay:1.2s">⚛️</span>
+      <span class="hero-emoji" style="top:80%;left:15%;animation-duration:9s;animation-delay:0.8s">🟩</span>
+      <span class="hero-emoji" style="top:25%;right:5%;animation-duration:6.2s;animation-delay:1.5s">🗄️</span>
+      <span class="hero-emoji" style="top:85%;right:20%;animation-duration:7.8s;animation-delay:0.2s">🔧</span>
+    </div>
+    <div class="hero-content anim-fade-slide-up">
+      <div class="hero-tag">
+        <span class="hero-tag-dot anim-blink"></span>
+        <span data-i18n="hero_tag">Certified Prompt Engineering</span>
+      </div>
+      <h1 class="hero-title">
+        Prompts <span class="hero-title-glitch" data-text="for real projects" data-i18n="hero_title_sub">for real projects</span>
+      </h1>
+      <p class="hero-subtitle" data-i18n="hero_subtitle">A curated library of battle-tested prompt structures published by certified engineers.</p>
+      <div class="hero-ctas">
+        <a href="#library" class="hero-cta-primary anim-pulse-glow" data-i18n="hero_cta_primary">Browse Prompts</a>
+        <a href="#publish" class="hero-cta-secondary" data-i18n="hero_cta_secondary">Become Certified</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="hero-stat-number" id="statPrompts">6</div>
+          <div class="hero-stat-label" data-i18n="hero_stat_prompts">Prompts</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-number">2</div>
+          <div class="hero-stat-label" data-i18n="hero_stat_authors">Certified Authors</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-number">4</div>
+          <div class="hero-stat-label" data-i18n="hero_stat_types">Prompt Types</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Library -->
+  <section class="section" id="library">
+    <p class="section-eyebrow" data-i18n="filter_spec">Spec</p>
+    <h2 class="section-title" data-i18n="nav_library">Library</h2>
+    <p class="section-subtitle" data-i18n="hero_subtitle">A curated library of battle-tested prompt structures published by certified engineers.</p>
+    <div class="filters">
+      <button class="filter-btn active" data-filter="all" data-i18n="filter_all">All</button>
+      <button class="filter-btn" data-filter="spec" data-i18n="filter_spec">Spec</button>
+      <button class="filter-btn" data-filter="architecture" data-i18n="filter_arch">Architecture</button>
+      <button class="filter-btn" data-filter="ui" data-i18n="filter_ui">UI</button>
+      <button class="filter-btn" data-filter="agent" data-i18n="filter_agent">Agent</button>
+      <button class="filter-btn" data-filter="system" data-i18n="filter_system">System Prompt</button>
+    </div>
+    <div class="cards-grid" id="cardsGrid"></div>
+  </section>
+
+  <!-- Modal -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal">
+      <button class="modal-close" id="modalClose">&times;</button>
+      <div class="modal-header">
+        <div class="modal-meta">
+          <span class="prompt-card-type" id="modalType">Spec</span>
+          <span class="prompt-card-author" id="modalAuthor">admin</span>
+        </div>
+        <h3 class="modal-title" id="modalTitle">Title</h3>
+      </div>
+      <div class="modal-body" id="modalBody">Body</div>
+      <div class="modal-actions">
+        <button class="btn-copy" id="modalCopyBtn" data-i18n="modal_copy">Copy</button>
+        <button class="btn-download" id="modalDownloadBtn" data-i18n="modal_download">Download .md</button>
+        <button class="btn-adapt-modal" id="modalAdaptBtn" data-i18n="modal_adapt">Adapt This Prompt</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Adapter -->
+  <section class="section" id="adapter">
+    <p class="section-eyebrow" data-i18n="adapter_title">AI Adapter</p>
+    <h2 class="section-title" data-i18n="adapter_title">AI Adapter</h2>
+    <div class="adapter-layout">
+      <div class="adapter-info">
+        <p data-i18n="adapter_subtitle">Reshape any prompt structure to fit your exact project.</p>
+      </div>
+      <div class="adapter-panel">
+        <label for="adapterSelect" data-i18n="adapter_select_label">Select a prompt structure</label>
+        <select id="adapterSelect"></select>
+        <label for="adapterIdea" data-i18n="adapter_idea_label">Describe your project idea</label>
+        <textarea id="adapterIdea" data-i18n-placeholder="adapter_idea_placeholder" placeholder="e.g. A task manager app for freelancers with invoicing..."></textarea>
+        <button class="btn-generate" id="generateBtn" data-i18n="adapter_generate">Generate Mega-Prompt</button>
+        <div class="adapter-output" id="adapterOutput">
+          <div class="adapter-output-header">
+            <span>Mega-Prompt</span>
+            <button class="btn-copy" id="adapterCopyBtn" data-i18n="adapter_copy">Copy</button>
+          </div>
+          <div class="adapter-output-body" id="adapterOutputBody"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stacks -->
+  <section class="section" id="stacks">
+    <p class="section-eyebrow" data-i18n="stacks_eyebrow">Ecosystem</p>
+    <h2 class="section-title" data-i18n="stacks_title">Tech Stacks</h2>
+    <p class="section-subtitle">Technologies we work with.</p>
+    <div class="stacks-grid">
+      <div class="stack-card" data-desc="Markup language for the web">
+        <div class="stack-card-emoji">🌐</div>
+        <div class="stack-card-name">HTML</div>
+        <div class="stack-card-desc" data-i18n="stack_html">Markup language for the web</div>
+      </div>
+      <div class="stack-card" data-desc="Visual styling for interfaces">
+        <div class="stack-card-emoji">🎨</div>
+        <div class="stack-card-name">CSS</div>
+        <div class="stack-card-desc" data-i18n="stack_css">Visual styling for interfaces</div>
+      </div>
+      <div class="stack-card" data-desc="Dynamic client-side scripting">
+        <div class="stack-card-emoji">⚡</div>
+        <div class="stack-card-name">JavaScript</div>
+        <div class="stack-card-desc" data-i18n="stack_js">Dynamic client-side scripting</div>
+      </div>
+      <div class="stack-card" data-desc="Versatile general-purpose language">
+        <div class="stack-card-emoji">🐍</div>
+        <div class="stack-card-name">Python</div>
+        <div class="stack-card-desc" data-i18n="stack_python">Versatile general-purpose language</div>
+      </div>
+      <div class="stack-card" data-desc="JavaScript runtime for servers">
+        <div class="stack-card-emoji">🟩</div>
+        <div class="stack-card-name">Node.js</div>
+        <div class="stack-card-desc" data-i18n="stack_node">JavaScript runtime for servers</div>
+      </div>
+      <div class="stack-card" data-desc="Component-based UI library">
+        <div class="stack-card-emoji">⚛️</div>
+        <div class="stack-card-name">React</div>
+        <div class="stack-card-desc" data-i18n="stack_react">Component-based UI library</div>
+      </div>
+      <div class="stack-card" data-desc="Relational database queries">
+        <div class="stack-card-emoji">🗄️</div>
+        <div class="stack-card-name">SQL</div>
+        <div class="stack-card-desc" data-i18n="stack_sql">Relational database queries</div>
+      </div>
+      <div class="stack-card" data-desc="Distributed version control">
+        <div class="stack-card-emoji">🔧</div>
+        <div class="stack-card-name">Git</div>
+        <div class="stack-card-desc" data-i18n="stack_git">Distributed version control</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Publish -->
+  <section class="section" id="publish">
+    <p class="section-eyebrow" data-i18n="nav_publish">Publish</p>
+    <h2 class="section-title" data-i18n="nav_publish">Publish</h2>
+    <div class="publish-locked" id="publishLocked">
+      <div class="publish-locked-icon">🔒</div>
+      <div class="publish-locked-title" data-i18n="publish_locked">Certified users only</div>
+      <div class="publish-locked-text" data-i18n="publish_login_prompt">Login to publish prompt structures.</div>
+    </div>
+    <form class="publish-form" id="publishForm">
+      <label for="publishTitle" data-i18n="publish_title_label">Title</label>
+      <input type="text" id="publishTitle" required>
+      <label for="publishType" data-i18n="publish_type_label">Type</label>
+      <select id="publishType">
+        <option value="spec">Spec</option>
+        <option value="architecture">Architecture</option>
+        <option value="ui">UI</option>
+        <option value="agent">Agent</option>
+        <option value="system">System Prompt</option>
+      </select>
+      <label for="publishStacks" data-i18n="publish_stacks_label">Stack tags (comma separated)</label>
+      <input type="text" id="publishStacks" placeholder="HTML, CSS, JS">
+      <label for="publishDesc" data-i18n="publish_desc_label">Short description</label>
+      <input type="text" id="publishDesc">
+      <label for="publishBody" data-i18n="publish_body_label">Prompt body</label>
+      <textarea id="publishBody" required></textarea>
+      <button type="submit" class="btn-submit" data-i18n="publish_submit">Publish Prompt</button>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">Prompt<span>Ops</span></div>
+      <div class="footer-links">
+        <a href="#hero">About</a>
+        <a href="#">GitHub</a>
+        <a href="#publish" data-i18n="nav_publish">Publish</a>
+      </div>
+      <div class="footer-built" data-i18n="footer_built">Built with HTML · CSS · JS</div>
+    </div>
+  </footer>
+
+  <!-- Login Modal -->
+  <div class="modal-overlay" id="loginModal">
+    <div class="modal login-modal">
+      <button class="modal-close" onclick="document.getElementById('loginModal').classList.remove('open')">&times;</button>
+      <h3 data-i18n="login_title">Login</h3>
+      <form id="loginForm">
+        <label for="loginUsername" data-i18n="login_username">Username</label>
+        <input type="text" id="loginUsername" autocomplete="off">
+        <label for="loginPassword" data-i18n="login_password">Password</label>
+        <input type="password" id="loginPassword">
+        <button type="submit" class="btn-submit" data-i18n="login_submit">Login</button>
+        <p class="login-error" id="loginError" data-i18n="login_error">Invalid credentials</p>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script src="js/storage.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/prompts.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/adapter.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
