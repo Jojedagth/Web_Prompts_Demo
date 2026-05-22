@@ -274,7 +274,7 @@
 
 .hero-stat-label {
   font-size: 0.75rem;
-  color: chartreuse;
+  color: var(--text-muted);
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
