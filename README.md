@@ -2,10 +2,6 @@
 
 Biblioteca local de estructuras de prompt certificadas. Sin dependencias, sin servidor.
 
-## Cómo abrir
-
-Abrí `index.html` en tu navegador. Todo funciona directo.
-
 ## Funcionamiento básico
 
 **Library** — Cards con prompts precargados. Filtralos por tipo (Spec, Architecture, UI, Agent, System Prompt). Hacé clic en **View** para ver el prompt completo, copiarlo o descargarlo como `.md`.
@@ -21,3 +17,5 @@ Abrí `index.html` en tu navegador. Todo funciona directo.
 ## Stack
 
 HTML5, CSS3, Vanilla JS. Todo en `css/` y `js/`.
+
+![Web](/public/web.png)
